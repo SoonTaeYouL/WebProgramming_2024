@@ -12,6 +12,9 @@ const output = {
     login: (req,res)=>{
         res.render('login');
     },
+    calender: (req,res)=>{
+        res.render('calender');
+    }
 };
 
 const process = {
