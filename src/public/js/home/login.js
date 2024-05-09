@@ -11,7 +11,7 @@ function login(){
         id: id.value,
         password: password.value
     };
-    fetch('/login',{
+    fetch('/',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ function login(){
     }).then((res)=>res.json())
     .then((res)=>{
         if(res.success){
-            location.href = '/';
+            location.href = '/calender';
         }else{
             alert(res.msg);
         }
