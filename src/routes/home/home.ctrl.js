@@ -12,8 +12,8 @@ const output = {
     login: (req,res)=>{
         res.render('login');
     },
-    calender: (req,res)=>{
-        res.render('calender');
+    calendar: (req,res)=>{
+        res.render('calendar');
     }
 };
 
@@ -33,6 +33,27 @@ const process = {
         return res.json({
             success: false,
             msg: '로그인에 실패하셨습니다.',
+        });
+    },
+    reserv: (req,res)=>{
+        var date = req.body.date;
+        fs.readFile('../../../database/db.json', 'utf8', (err, data) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ success: false, msg: '서버 오류' });
+            }
+    
+            var reservations = JSON.parse(data);
+            var dateReservations = reservations[date];
+    
+            if (dateReservations && dateReservations.length > 0) {
+                res.json({
+                    success: true,
+                    reservations: dateReservations
+                });
+            } else {
+                res.json({ success: false, msg: '예약이 없습니다.' });
+            }
         });
     }
 };

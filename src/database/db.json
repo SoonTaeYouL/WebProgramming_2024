@@ -1,0 +1,12 @@
+{
+  "2024-05-25": [{ "room": 201, "reservation_code": 1, "name": "John Doe"},
+                 { "room": 202, "reservation_code": 2, "name": "Sally Smith"},
+                 { "room": 203, "reservation_code": 3, "name": "Jane Jones"},
+                 { "room": 204, "reservation_code": 4, "name": "Bob Brown"},
+                 { "room": 205, "reservation_code": 5, "name": "Mary White"}],
+    "2024-06-02": [{ "room": 201, "reservation_code": 1, "name": "John Doe"},
+                     { "room": 202, "reservation_code": 2, "name": "Sally Smith"},
+                     { "room": 203, "reservation_code": 3, "name": "Jane Jones"},
+                     { "room": 204, "reservation_code": 4, "name": "Bob Brown"},
+                     { "room": 205, "reservation_code": 5, "name": "Mary White"}]
+}

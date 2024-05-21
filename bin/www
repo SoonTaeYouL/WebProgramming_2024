@@ -2,7 +2,7 @@
 
 // app 모듈 가져오기
 const app = require('../app');
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT || 3000;
 
 
 //서버가 실행될 포트를 3000번으로 설정
