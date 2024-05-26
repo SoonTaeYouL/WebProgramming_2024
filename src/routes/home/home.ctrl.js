@@ -1,8 +1,10 @@
 'use strict';
+const fs = require('fs');
+const path = require('path');
 
 const users = {
-    id: ['test'],
-    password: ['1234'],
+    id: ['test','aaa'],
+    password: ['1234','aaa'],
 };
 
 const output = {
@@ -14,6 +16,9 @@ const output = {
     },
     calendar: (req,res)=>{
         res.render('calendar');
+    },
+    room: (req,res)=>{
+        res.render('room');
     }
 };
 
@@ -36,17 +41,17 @@ const process = {
         });
     },
     reserv: (req,res)=>{
+        console.log(req.body);
         var date = req.body.date;
-        fs.readFile('../../../database/db.json', 'utf8', (err, data) => {
+        const dbPath = path.join(__dirname, '../../database/db.json');
+        fs.readFile(dbPath, 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ success: false, msg: '서버 오류' });
             }
-    
             var reservations = JSON.parse(data);
             var dateReservations = reservations[date];
-    
-            if (dateReservations && dateReservations.length > 0) {
+            if (dateReservations) {
                 res.json({
                     success: true,
                     reservations: dateReservations

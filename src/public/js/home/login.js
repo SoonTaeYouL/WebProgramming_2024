@@ -11,7 +11,7 @@ function login(){
         id: id.value,
         password: password.value
     };
-    fetch('/',{
+    fetch('/login',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

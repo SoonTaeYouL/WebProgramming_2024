@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
     dateClick: function (info) {
-    //   alert(info.dateStr);
-      reserv(info.dateStr);
+        //   alert(info.dateStr);
+        // console.log(info.dateStr)
+        reserv(info.dateStr);
     },
     headerToolbar: {
       start: "dayGridMonth,timeGridWeek,timeGridDay", // headerToolbar에 버튼을 추가
@@ -46,7 +47,7 @@ function reserv(date) {
   var req = {
     date: date,
   };
-  fetch("/", {
+  fetch("/calendar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -55,47 +56,16 @@ function reserv(date) {
   })
     .then((res) => res.json())
     .then((res) => {
-        if (res.success && res.reservations.length > 0) {
-            let reservations = res.reservations.map(r => `Room: ${r.room}, Code: ${r.reservation_code}, Name: ${r.name}`).join('\n');
+        let reservations = res.reservations?.map((reservation) => `\nRoom ${reservation.room}: ${reservation.name}`);
+        if (res.success) {
+          // let room = res.reservations[0].room;
+            // alert(`Reservations for ${date}:\n${room}`);
             alert(`Reservations for ${date}:\n${reservations}`);
+            location.href = '/room';
         } else {
-            // alert('예약이 없습니다.');
-            alert(`Reservations for ${date}:\n${reservations}`);
+            alert(`예약이 없습니다. `);
+            // alert(`Reservations for ${date}:\n${reservations}`);
+            location.href = '/room';
         }
     });
 };
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   const calendarEl = document.getElementById("calendar");
-//   const calendar = new FullCalendar.Calendar(calendarEl, {
-//     initialView: "dayGridMonth",
-//     dateClick: function (info) {
-//       alert(info.dateStr);
-//       console.log(jsonData);
-//     },
-//   });
-//   calendar.render();
-// });
-
-// reservbtn.addEventListener("click", reserv);
-
-// function reserv() {
-//   var req = {
-//     text: text.value,
-//   };
-//   fetch("/", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(req),
-//   })
-//     .then((res) => res.json())
-//     .then((res) => {
-//       if (res.success) {
-//         alert(text.value);
-//       } else {
-//         alert(res.msg);
-//       }
-//     });
-// }
