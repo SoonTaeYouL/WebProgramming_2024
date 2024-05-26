@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const session = require('express-session')
 
 const users = {
     id: ['test','aaa'],
@@ -30,8 +31,10 @@ const process = {
         if(users.id.includes(id)){
             const idx = users.id.indexOf(id);
             if(users.password[idx] === password){
+                req.session.user = id;
                 return res.json({
                     success: true,
+                    redirect: '/calendar'
                 });
             }
         }
@@ -40,7 +43,7 @@ const process = {
             msg: '로그인에 실패하셨습니다.',
         });
     },
-    reserv: (req,res)=>{
+    manage: (req,res)=>{
         console.log(req.body);
         var date = req.body.date;
         const dbPath = path.join(__dirname, '../../database/db.json');
@@ -50,7 +53,9 @@ const process = {
                 return res.status(500).json({ success: false, msg: '서버 오류' });
             }
             var reservations = JSON.parse(data);
+            // console.log(reservations);
             var dateReservations = reservations[date];
+            console.log(dateReservations);
             if (dateReservations) {
                 res.json({
                     success: true,

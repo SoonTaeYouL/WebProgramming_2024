@@ -1,9 +1,27 @@
 "use strict";
 
 var room = document.querySelector("#room");
+var color = document.querySelector("#color");
 
-
-
+window.onload = function() {
+  fetch('../../database/db.json')
+    .then(response => response.json())
+    .then(data => {
+      var rooms = document.querySelectorAll(".color");
+      rooms.forEach(function (room) {
+        // 방의 예약 상태에 따라 색상을 변경합니다.
+        console.log(data);
+        if (data.date.color === 1) {
+          // 방이 예약되어 있으면 빨간색으로 표시합니다.
+          room.style.backgroundColor = "red";
+        } else {
+          // 방이 예약되어 있지 않으면 초록색으로 표시합니다.
+          room.style.backgroundColor = "green";
+        }
+      });
+    })
+    .catch(error => console.error('Error:', error));
+};
 
 
 

@@ -56,11 +56,13 @@ function reserv(date) {
   })
     .then((res) => res.json())
     .then((res) => {
+        // let color = res.reservations[0].color;
+        // console.log(color);
+        // console.log(res.reservations);
+        // let color = res.reservations[0].color;
         let reservations = res.reservations?.map((reservation) => `\nRoom ${reservation.room}: ${reservation.name}`);
         if (res.success) {
-          // let room = res.reservations[0].room;
-            // alert(`Reservations for ${date}:\n${room}`);
-            alert(`Reservations for ${date}:\n${reservations}`);
+            alert('예약이 있습니다. ');
             location.href = '/room';
         } else {
             alert(`예약이 없습니다. `);

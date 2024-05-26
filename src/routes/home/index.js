@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const session = require('express-session')
 const router = express.Router();
 
 const ctrl = require('./home.ctrl');
@@ -12,7 +13,7 @@ router.get('/room',ctrl.output.room);
 
 
 router.post('/login',ctrl.process.login);
-router.post('/calendar',ctrl.process.reserv);
+router.post('/calendar',ctrl.process.manage);
 
 
 router.get('/images/:imageName', function(req, res){
