@@ -95,30 +95,30 @@
             </div>
         </div>
     </header>
-    <div class="floor_num" id="floor_container">
+    <div style="overflow:auto" class="floor_num" id="floor_container">
         <div class="floor" id="floor_2">
             <h3>2층</h3>
-            <div class="room" onclick="openPopup('201')">201</div>
-            <div class="room" onclick="openPopup('202')">202</div>
-            <div class="room" onclick="openPopup('203')">203</div>
-            <div class="room" onclick="openPopup('204')">204</div>
-            <div class="room" onclick="openPopup('205')">205</div>
+            <div class="room" id=201 onclick="openPopup('201')">201</div>
+            <div class="room" id="202" onclick="openPopup('202')">202</div>
+            <div class="room" id="203" onclick="openPopup('203')">203</div>
+            <div class="room" id="204" onclick="openPopup('204')">204</div>
+            <div class="room" id="205" onclick="openPopup('205')">205</div>
         </div>
         <div class="floor" id="floor_3">
             <h3>3층</h3>
-            <div class="room" onclick="openPopup('301')">301</div>
-            <div class="room" onclick="openPopup('302')">302</div>
-            <div class="room" onclick="openPopup('303')">303</div>
-            <div class="room" onclick="openPopup('304')">304</div>
-            <div class="room" onclick="openPopup('305')">305</div>
+            <div class="room" id="301" onclick="openPopup('301')">301</div>
+            <div class="room" id="302" onclick="openPopup('302')">302</div>
+            <div class="room" id="303" onclick="openPopup('303')">303</div>
+            <div class="room" id="304" onclick="openPopup('304')">304</div>
+            <div class="room" id="305" onclick="openPopup('305')">305</div>
         </div>
         <div class="floor" id="floor_4">
             <h3>4층</h3>
-            <div class="room" onclick="openPopup('401')">401</div>
-            <div class="room" onclick="openPopup('402')">402</div>
-            <div class="room" onclick="openPopup('403')">403</div>
-            <div class="room" onclick="openPopup('404')">404</div>
-            <div class="room" onclick="openPopup('405')">405</div>
+            <div class="room" id="401" onclick="openPopup('401')">401</div>
+            <div class="room" id="402" onclick="openPopup('402')">402</div>
+            <div class="room" id="403" onclick="openPopup('403')">403</div>
+            <div class="room" id="404" onclick="openPopup('404')">404</div>
+            <div class="room" id="405" onclick="openPopup('405')">405</div>
         </div>
     </div>
 
@@ -131,15 +131,26 @@
         <select id="roomNumber">
             <option value="201">201</option>
             <option value="202">202</option>
+            <option value="203">203</option>
+            <option value="204">204</option>
+            <option value="205">205</option>
             <option value="301">301</option>
+            <option value="302">302</option>
+            <option value="303">303</option>
+            <option value="304">304</option>
+            <option value="305">305</option>
             <option value="401">401</option>
+            <option value="402">402</option>
+            <option value="403">403</option>
+            <option value="404">404</option>
+            <option value="405">405</option>
         </select>
         <br /><br />
-        <label for="content1">예약자 이름</label>
-        <textarea id="content1" name="content1" rows="1"></textarea><br />
-        <label for="content2">요청사항</label>
-        <textarea id="content2" name="content3" rows="4"></textarea><br />
-        <button onclick="saveReservation()">저장</button>
+        <label for="content2">예약자 이름</label>
+        <textarea id="content2" name="content1" rows="1"></textarea><br />
+        <label for="content3">요청사항</label>
+        <textarea id="content3" name="content3" rows="4"></textarea><br />
+        <button onclick="update_reservations()">저장</button>
         <button onclick="closePopup()">취소</button>
     </div>
 

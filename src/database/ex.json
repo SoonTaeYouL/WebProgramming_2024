@@ -1,0 +1,150 @@
+{
+  "2024-05-25": [
+    {
+      "color": 1,
+      "room": 201,
+      "reservation_code": 1,
+      "name": "John Doe"
+    },
+    {
+      "color": 0,
+      "room": 202,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "color": 1,
+      "room": 203,
+      "reservation_code": 3,
+      "name": "Jane Jones"
+    },
+    {
+      "color": 1,
+      "room": 204,
+      "reservation_code": 4,
+      "name": "Bob Brown"
+    },
+    {
+      "color": 1,
+      "room": 205,
+      "reservation_code": 5,
+      "name": "Mary White"
+    }
+  ],
+  "2024-06-02": [
+    {
+      "color": 1,
+      "room": 201,
+      "reservation_code": 1,
+      "name": "John Doe"
+    },
+    {
+      "room": 202,
+      "reservation_code": 2,
+      "name": "Sally Smith"
+    },
+    {
+      "room": 203,
+      "reservation_code": 3,
+      "name": "Jane Jones"
+    },
+    {
+      "room": 204,
+      "reservation_code": 4,
+      "name": "Bob Brown"
+    },
+    {
+      "room": 205,
+      "reservation_code": 5,
+      "name": "Mary White"
+    }
+  ],
+  "2024-05-26": [
+    {
+      "color": 1,
+      "room": 201,
+      "reservation_code": "1",
+      "name": ""
+    },
+    {
+      "color": 0,
+      "room": 202
+    },
+    {
+      "color": 1,
+      "room": 203,
+      "reservation_code": 3,
+      "name": "Jane Jones"
+    },
+    {
+      "color": 0,
+      "room": 204
+    },
+    {
+      "color": 1,
+      "room": 205,
+      "reservation_code": 5,
+      "name": "Mary White"
+    },
+    {
+      "color": 0,
+      "room": 301,
+      "reservation_code": 6,
+      "name": "Tom Black"
+    },
+    {
+      "color": 0,
+      "room": 302,
+      "reservation_code": 7,
+      "name": "Sue Green"
+    },
+    {
+      "color": 1,
+      "room": 303,
+      "reservation_code": 8,
+      "name": "Bill Grey"
+    },
+    {
+      "color": 0,
+      "room": 304,
+      "reservation_code": 9,
+      "name": "Jill Pink"
+    },
+    {
+      "color": 0,
+      "room": 305,
+      "reservation_code": 10,
+      "name": "Fred Orange"
+    },
+    {
+      "color": 0,
+      "room": 401,
+      "reservation_code": 11,
+      "name": "Alice Purple"
+    },
+    {
+      "color": 1,
+      "room": 402,
+      "reservation_code": 12,
+      "name": "Wendy Yellow"
+    },
+    {
+      "color": 0,
+      "room": 403,
+      "reservation_code": 13,
+      "name": "Sam Red"
+    },
+    {
+      "color": 1,
+      "room": 404,
+      "reservation_code": 14,
+      "name": "Tim Brown"
+    },
+    {
+      "color": 0,
+      "room": 405,
+      "reservation_code": 15,
+      "name": "Pam White"
+    }
+  ]
+}
