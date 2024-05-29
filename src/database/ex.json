@@ -61,14 +61,16 @@
   ],
   "2024-05-26": [
     {
-      "color": 1,
+      "color": 0,
       "room": 201,
-      "reservation_code": "1",
+      "reservation_code": "",
       "name": ""
     },
     {
-      "color": 0,
-      "room": 202
+      "color": 1,
+      "room": 202,
+      "reservation_code": "undefined",
+      "name": "asdfaiv"
     },
     {
       "color": 1,
@@ -78,18 +80,20 @@
     },
     {
       "color": 0,
-      "room": 204
+      "room": 204,
+      "reservation_code": "",
+      "name": ""
     },
     {
       "color": 1,
       "room": 205,
-      "reservation_code": 5,
+      "reservation_code": "5",
       "name": "Mary White"
     },
     {
-      "color": 0,
+      "color": 1,
       "room": 301,
-      "reservation_code": 6,
+      "reservation_code": "6",
       "name": "Tom Black"
     },
     {
