@@ -1,34 +1,29 @@
 {
   "2024-05-25": [
     {
-      "color": 1,
       "room": 201,
-      "reservation_code": 1,
-      "name": "John Doe"
+      "reservation_code": "1",
+      "name": "asdf"
     },
     {
-      "color": 0,
       "room": 202,
+      "reservation_code": "1",
+      "name": "adfs"
+    },
+    {
+      "room": 203,
+      "reservation_code": "asd",
+      "name": "asd"
+    },
+    {
+      "room": 204,
       "reservation_code": "",
       "name": ""
     },
     {
-      "color": 1,
-      "room": 203,
-      "reservation_code": 3,
-      "name": "Jane Jones"
-    },
-    {
-      "color": 1,
-      "room": 204,
-      "reservation_code": 4,
-      "name": "Bob Brown"
-    },
-    {
-      "color": 1,
       "room": 205,
-      "reservation_code": 5,
-      "name": "Mary White"
+      "reservation_code": "",
+      "name": ""
     }
   ],
   "2024-06-02": [

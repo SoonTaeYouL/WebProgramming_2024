@@ -1,7 +1,5 @@
 "use strict";
 
-// const fs = require("fs");
-// import fs from "fs";
 var rooms = document.querySelectorAll(".room");
 var date = localStorage.getItem("date");
 
@@ -9,18 +7,18 @@ function setColors() {
   fetch("/lists")
     .then((response) => response.json())
     .then((data) => {
-      let db_dates = data.reservations[date];
+      var db_dates = data.reservations[date];
       // lists에서 가져온 데이터로, 방의 색상을 변경합니다.
       db_dates.forEach(function (index) {
         // 방의 예약 상태에 따라 색상을 변경합니다.
         let room_id = document.getElementById(index.room);
         // console.log(room_id.id);
-        if (index.color === 1) {
+        if (index.name === "") {
           if (index.room) {
-            room_id.style.backgroundColor = "red";
+            room_id.style.backgroundColor = "green";
           }
         } else {
-          room_id.style.backgroundColor = "green";
+          room_id.style.backgroundColor = "red";
         }
       });
     });
@@ -39,6 +37,39 @@ function toggleFloor() {
   });
 }
 
+// 예약 추가
+async function add_reservations() {
+  var roomNumber = parseInt(document.getElementById("roomNumber").value);
+  var date = document.getElementById("content1").value;
+  var guestName = document.getElementById("content2").value;
+  var new_reservation_code = document.getElementById("content3").value;
+  console.log(guestName);
+  if (guestName !== "") {
+    var reserv_map = {
+      room: roomNumber,
+      reservation_code: new_reservation_code,
+      name: guestName,
+    };
+  }
+  var req = {
+    reserv_map: reserv_map,
+    date: date,
+  };
+  fetch("/lists", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(req),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+    });
+  closePopup();
+  window.location.reload(true);
+}
+
 // 예약 업데이트
 function update_reservations() {
   var roomNumber = parseInt(document.getElementById("roomNumber").value);
@@ -47,14 +78,12 @@ function update_reservations() {
   var reservation_code = document.getElementById("content3").value;
   if (guestName === "") {
     var reserv_map = {
-      color: 0,
       room: roomNumber,
       reservation_code: "",
       name: "",
     };
   } else {
     var reserv_map = {
-      color: 1,
       room: roomNumber,
       reservation_code: reservation_code,
       name: guestName,
@@ -77,9 +106,39 @@ function update_reservations() {
       console.log("Success:", data);
     });
   closePopup();
-  // window.location.reload();
+  window.location.reload(true);
 }
 
+// 예약 삭제
+function delete_reservations() {
+  var roomNumber = parseInt(document.getElementById("roomNumber").value);
+  var date = document.getElementById("content1").value;
+  // var guestName = document.getElementById("content2").value;
+  // var reservation_code = document.getElementById("content3").value;
+  var reserv_map = {
+    room: roomNumber,
+    reservation_code: "",
+    name: "",
+  };
+  console.log(reserv_map);
+  var req = {
+    reserv_map: reserv_map,
+    date: date,
+  };
+  fetch("/lists", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(req),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+    });
+  closePopup();
+  window.location.reload(true);
+}
 // 팝업 창 열기
 function openPopup(roomNumber) {
   fetch("/lists")
@@ -91,7 +150,25 @@ function openPopup(roomNumber) {
           const index = db_dates.indexOf(reserv);
           document.getElementById("content1").value = date;
           document.getElementById("content2").value = db_dates[index].name;
-          document.getElementById("content3").value = db_dates[index].reservation_code;
+          document.getElementById("content3").value =
+            db_dates[index].reservation_code;
+          var popup = document.getElementById("popup");
+          var popupTitle = document.getElementById("popupTitle");
+          popup.style.display = "block";
+          popupTitle.innerText = "Room " + roomNumber + " Reservation";
+          document.getElementById("roomNumber").value = roomNumber;
+          var addormod = document.getElementById("addormod");
+          if (document.getElementById("content2").value === "") {
+            addormod.innerText = "추가";
+            addormod.onclick = add_reservations;
+            deletebutton.style.display = "none";
+          } else {
+            addormod.innerText = "수정";
+            addormod.onclick = update_reservations;
+            deletebutton.innerText = "삭제";
+            deletebutton.onclick = delete_reservations;
+            deletebutton.style.display = "inline-block";
+          }
         }
       });
     });
@@ -99,11 +176,6 @@ function openPopup(roomNumber) {
   // } else {
   //   alert("예약 가능한 방입니다.");
   // }
-  var popup = document.getElementById("popup");
-  var popupTitle = document.getElementById("popupTitle");
-  popup.style.display = "block";
-  popupTitle.innerText = "Room " + roomNumber + " Reservation";
-  document.getElementById("roomNumber").value = roomNumber;
 }
 
 // 팝업 창 닫기
