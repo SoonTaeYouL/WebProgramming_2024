@@ -52,6 +52,7 @@ router.post("/calendar", ctrl.process.manage);
 // db.json routes
 router.get("/lists", ctrl.process.read);
 router.post("/lists", ctrl.process.write);
+router.post("/alldel", ctrl.process.alldelete);
 
 // Image routes
 router.get("/images/:imageName", function (req, res) {

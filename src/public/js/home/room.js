@@ -3,25 +3,42 @@
 var rooms = document.querySelectorAll(".room");
 var date = localStorage.getItem("date");
 
-function setColors() {
-  fetch("/lists")
-    .then((response) => response.json())
-    .then((data) => {
-      var db_dates = data.reservations[date];
-      // lists에서 가져온 데이터로, 방의 색상을 변경합니다.
-      db_dates.forEach(function (index) {
-        // 방의 예약 상태에 따라 색상을 변경합니다.
-        let room_id = document.getElementById(index.room);
-        // console.log(room_id.id);
-        if (index.name === "") {
-          if (index.room) {
-            room_id.style.backgroundColor = "green";
-          }
-        } else {
-          room_id.style.backgroundColor = "red";
+async function setColors() {
+  try {
+    const response = await fetch("/lists");
+    const data = await response.json();
+    const db_dates = data.reservations[date];
+    db_dates.forEach(function (index) {
+      let room_id = document.getElementById(index.room);
+      if (index.name === "") {
+        if (index.room) {
+          room_id.style.backgroundColor = "green";
         }
-      });
+      } else {
+        room_id.style.backgroundColor = "red";
+      }
     });
+  } catch (error) {
+    console.error("Error:", error);
+  }
+  // fetch("/lists")
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     var db_dates = data.reservations[date];
+  //     // lists에서 가져온 데이터로, 방의 색상을 변경합니다.
+  //     db_dates.forEach(function (index) {
+  //       // 방의 예약 상태에 따라 색상을 변경합니다.
+  //       let room_id = document.getElementById(index.room);
+  //       // console.log(room_id.id);
+  //       if (index.name === "") {
+  //         if (index.room) {
+  //           room_id.style.backgroundColor = "green";
+  //         }
+  //       } else {
+  //         room_id.style.backgroundColor = "red";
+  //       }
+  //     });
+  //   });
   // .catch((error) => console.error("Error:", error));
 }
 
@@ -65,9 +82,9 @@ async function add_reservations() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
+      closePopup();
+      window.location.reload(true);
     });
-  closePopup();
-  window.location.reload(true);
 }
 
 // 예약 업데이트
@@ -104,9 +121,9 @@ function update_reservations() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
+      closePopup();
+      window.location.reload(true);
     });
-  closePopup();
-  window.location.reload(true);
 }
 
 // 예약 삭제
@@ -135,9 +152,9 @@ function delete_reservations() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
+      closePopup();
+      window.location.reload(true);
     });
-  closePopup();
-  window.location.reload(true);
 }
 // 팝업 창 열기
 function openPopup(roomNumber) {
@@ -178,6 +195,26 @@ function openPopup(roomNumber) {
   // }
 }
 
+// room.html에서 일괄 삭제 버튼 클릭 시
+// 해당 날짜의 모든 예약을 삭제합니다.
+// 단 db.json에 기본 틀이 있어야 합니다. {room: $roomNumber, reservation_code: "", name: ""}
+function alldelete() {
+  var req = {
+    date: date,
+  };
+  fetch("/alldel", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(req),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+      window.location.reload(true);
+    });
+}
 // 팝업 창 닫기
 function closePopup() {
   var popup = document.getElementById("popup");

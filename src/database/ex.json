@@ -2,18 +2,95 @@
   "2024-05-25": [
     {
       "room": 201,
-      "reservation_code": "1",
-      "name": "asdf"
+      "request": 1,
+      "name": "John Doe"
     },
     {
       "room": 202,
-      "reservation_code": "1",
-      "name": "adfs"
+      "request": "",
+      "name": ""
     },
     {
       "room": 203,
-      "reservation_code": "asd",
-      "name": "asd"
+      "request": 3,
+      "name": "Jane Jones"
+    },
+    {
+      "room": 204,
+      "request": "",
+      "name": ""
+    },
+    {
+      "room": 205,
+      "request": 5,
+      "name": "Mary White"
+    },
+    {
+      "room": 301,
+      "request": 6,
+      "name": "Tom Black"
+    },
+    {
+      "room": 302,
+      "request": 7,
+      "name": "Sue Green"
+    },
+    {
+      "room": 303,
+      "request": 8,
+      "name": "Bill Grey"
+    },
+    {
+      "room": 304,
+      "request": 9,
+      "name": "Jill Pink"
+    },
+    {
+      "room": 305,
+      "request": 10,
+      "name": "Fred Orange"
+    },
+    {
+      "room": 401,
+      "request": 11,
+      "name": "Alice Purple"
+    },
+    {
+      "room": 402,
+      "request": 12,
+      "name": "Wendy Yellow"
+    },
+    {
+      "room": 403,
+      "request": 13,
+      "name": "Sam Red"
+    },
+    {
+      "room": 404,
+      "request": 14,
+      "name": "Tim Brown"
+    },
+    {
+      "room": 405,
+      "request": 15,
+      "name": "Pam White"
+    }
+  ],
+  "2024-05-28": [
+    {
+      "room": 201,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 202,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 203,
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 204,
@@ -22,128 +99,135 @@
     },
     {
       "room": 205,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 301,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 302,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 303,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 304,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 305,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 401,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 402,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 403,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 404,
+      "reservation_code": "",
+      "name": ""
+    },
+    {
+      "room": 405,
       "reservation_code": "",
       "name": ""
     }
   ],
   "2024-06-02": [
     {
-      "color": 1,
       "room": 201,
-      "reservation_code": 1,
-      "name": "John Doe"
+      "request": 15,
+      "name": "Pam White"
     },
     {
       "room": 202,
-      "reservation_code": 2,
-      "name": "Sally Smith"
-    },
-    {
-      "room": 203,
-      "reservation_code": 3,
-      "name": "Jane Jones"
-    },
-    {
-      "room": 204,
-      "reservation_code": 4,
-      "name": "Bob Brown"
-    },
-    {
-      "room": 205,
-      "reservation_code": 5,
-      "name": "Mary White"
-    }
-  ],
-  "2024-05-26": [
-    {
-      "color": 0,
-      "room": 201,
-      "reservation_code": "",
-      "name": ""
-    },
-    {
-      "color": 1,
-      "room": 202,
-      "reservation_code": "undefined",
-      "name": "asdfaiv"
-    },
-    {
-      "color": 1,
-      "room": 203,
-      "reservation_code": 3,
-      "name": "Jane Jones"
-    },
-    {
-      "color": 0,
-      "room": 204,
-      "reservation_code": "",
-      "name": ""
-    },
-    {
-      "color": 1,
-      "room": 205,
-      "reservation_code": "5",
-      "name": "Mary White"
-    },
-    {
-      "color": 1,
-      "room": 301,
-      "reservation_code": "6",
-      "name": "Tom Black"
-    },
-    {
-      "color": 0,
-      "room": 302,
-      "reservation_code": 7,
-      "name": "Sue Green"
-    },
-    {
-      "color": 1,
-      "room": 303,
-      "reservation_code": 8,
-      "name": "Bill Grey"
-    },
-    {
-      "color": 0,
-      "room": 304,
-      "reservation_code": 9,
-      "name": "Jill Pink"
-    },
-    {
-      "color": 0,
-      "room": 305,
-      "reservation_code": 10,
-      "name": "Fred Orange"
-    },
-    {
-      "color": 0,
-      "room": 401,
-      "reservation_code": 11,
-      "name": "Alice Purple"
-    },
-    {
-      "color": 1,
-      "room": 402,
-      "reservation_code": 12,
-      "name": "Wendy Yellow"
-    },
-    {
-      "color": 0,
-      "room": 403,
-      "reservation_code": 13,
-      "name": "Sam Red"
-    },
-    {
-      "color": 1,
-      "room": 404,
-      "reservation_code": 14,
+      "request": 14,
       "name": "Tim Brown"
     },
     {
-      "color": 0,
+      "room": 203,
+      "request": 13,
+      "name": "Sam Red"
+    },
+    {
+      "room": 204,
+      "request": 12,
+      "name": "Wendy Yellow"
+    },
+    {
+      "room": 205,
+      "request": 11,
+      "name": "Alice Purple"
+    },
+    {
+      "room": 301,
+      "request": 10,
+      "name": "Fred Orange"
+    },
+    {
+      "room": 302,
+      "request": 9,
+      "name": "Jill Pink"
+    },
+    {
+      "room": 303,
+      "request": 8,
+      "name": "Bill Grey"
+    },
+    {
+      "room": 304,
+      "request": 7,
+      "name": "Sue Green"
+    },
+    {
+      "room": 305,
+      "request": 6,
+      "name": "Tom Black"
+    },
+    {
+      "room": 401,
+      "request": 5,
+      "name": "Mary White"
+    },
+    {
+      "room": 402,
+      "request": 4,
+      "name": "Bob Brown"
+    },
+    {
+      "room": 403,
+      "request": 3,
+      "name": "Jane Jones"
+    },
+    {
+      "room": 404,
+      "request": 2,
+      "name": "Sally Smith"
+    },
+    {
       "room": 405,
-      "reservation_code": 15,
-      "name": "Pam White"
+      "request": 1,
+      "name": "John Doe"
     }
   ]
 }

@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { all } = require(".");
 
 const users = {
   id: ["test", "aaa"],
@@ -156,7 +157,41 @@ const process = {
         }
       });
     });
-  }
+  },
+  alldelete: (req, res) => {
+    const dbPath = path.join(__dirname, "../../database/ex.json");
+    var date = req.body.date;
+    fs.readFile(dbPath, "utf8", (err, data) => {
+      if (err) {
+        // 에러
+        console.error(err);
+        return res.status(500).json({ success: false, msg: "서버 오류" });
+      }
+      var reservations = JSON.parse(data); // db.json 파일을 파싱
+      reservations[date] = [{ room: 201, reservation_code: "", name: ""},
+                            { room: 202, reservation_code: "", name: ""},
+                            { room: 203, reservation_code: "", name: ""},
+                            { room: 204, reservation_code: "", name: ""},
+                            { room: 205, reservation_code: "", name: ""},
+                            { room: 301, reservation_code: "", name: ""},
+                            { room: 302, reservation_code: "", name: ""},
+                            { room: 303, reservation_code: "", name: ""},
+                            { room: 304, reservation_code: "", name: ""},
+                            { room: 305, reservation_code: "", name: ""},
+                            { room: 401, reservation_code: "", name: ""},
+                            { room: 402, reservation_code: "", name: ""},
+                            { room: 403, reservation_code: "", name: ""},
+                            { room: 404, reservation_code: "", name: ""},
+                            { room: 405, reservation_code: "", name: ""}];
+      fs.writeFile(dbPath, JSON.stringify(reservations, null, 2), (err) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ success: false, msg: "서버 오류" });
+        }
+        res.json({ success: true });
+      });
+    });
+  },
 
 };
 

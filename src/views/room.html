@@ -3,10 +3,26 @@
 <head>
     <title>mainroom</title>
     <script src="/js/home/room.js" defer></script>
+    <!-- <script>
+        function alldelete() {
+            if (confirm("전체 데이터를 삭제하시겠습니까?")) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/delete-all-data", true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // 서버에서 응답을 받았을 때 처리할 내용
+                        alert("전체 데이터가 삭제되었습니다.");
+                    }
+                };
+                xhr.send();
+            }
+        }
+    </script> -->
     <style>
         html, body {
             width: 100%;
             height: 100%;
+            position: relative; /* Add position relative to body for button positioning */
         }
         body {
             margin: 0;
@@ -77,6 +93,18 @@
             border: none;
             cursor: pointer;
         }
+        .delete-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 2; /* Ensure the button appears above other elements */
+        }
     </style>
 </head>
 <body>
@@ -98,7 +126,7 @@
     <div style="overflow:auto" class="floor_num" id="floor_container">
         <div class="floor" id="floor_2">
             <h3>2층</h3>
-            <div class="room" id=201 onclick="openPopup('201')">201</div>
+            <div class="room" id="201" onclick="openPopup('201')">201</div>
             <div class="room" id="202" onclick="openPopup('202')">202</div>
             <div class="room" id="203" onclick="openPopup('203')">203</div>
             <div class="room" id="204" onclick="openPopup('204')">204</div>
@@ -150,9 +178,17 @@
         <textarea id="content2" name="content1" rows="1"></textarea><br />
         <label for="content3">요청사항</label>
         <textarea id="content3" name="content3" rows="4"></textarea><br />
+        <label for="fileUpload">필수서류</label><br/><br/>
+        <input type="file" id="fileUpload" name="fileUpload"><br />
+        <textarea id="fileupload" name="fileupload" rows="1"></textarea>
         <button id="addormod"></button>
         <button id="deletebutton" style="display: block;"></button>
-        <button onclick="closePopup()">취소</button>
+        <button onclick="closePopup()">취소</button><br/>
+
     </div>
+
+    <!-- 일괄 삭제 버튼 -->
+    <button id="delete-button" onclick="alldelete()">일괄 삭제</button>
+    
 </body>
 </html>
