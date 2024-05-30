@@ -92,48 +92,31 @@ const process = {
   // 있으면 방과 name를 확인하고 예약을 수정하는 코드
   write: (req, res) => {
     const dbPath = path.join(__dirname, "../../database/ex.json");
-    console.log("asdfadsfads");
-    console.log(req.body.reserv_map);
+
+    const image = req.file ? "/images/" + req.file.filename : null;
+    const new_reservation = JSON.parse(req.body.reserv_map);
+    const date = req.body.date;
+
+    const reservations = JSON.parse(fs.readFileSync(dbPath, "utf8"));
+
+    console.log(image, new_reservation, date);
+    console.log(reservations);
+
+    res.json("good");
+  },
+  delete: (req, res) => {
+    const dbPath = path.join(__dirname, "../../database/ex.json");
     var {
       room: new_room,
       reservation_code: new_reservation_code,
       name: new_name,
     } = req.body.reserv_map;
-    
     var new_date = req.body.date;
     var new_reserv = {
       room: new_room,
       reservation_code: new_reservation_code,
       name: new_name,
     };
-    fs.readFile(dbPath, "utf8", (err, data) => {
-      if (err) {
-        // 에러
-        console.error(err);
-        return res.status(500).json({ success: false, msg: "서버 오류" });
-      }
-      var reservations = JSON.parse(data); // db.json 파일을 파싱
-      var db_reservations = reservations[new_date]; // 해당 날짜의 예약을 가져옴
-      db_reservations.forEach((reserv) => {
-        if (reserv.room === new_room) {
-          const index = db_reservations.indexOf(reserv);
-          reservations[new_date][index] = new_reserv; // 해당 날짜의 예약을 수정
-          fs.writeFile(dbPath, JSON.stringify(reservations, null, 2), (err) => {
-            if (err) {
-              console.error(err);
-              return res.status(500).json({ success: false, msg: "서버 오류" });
-            }
-            res.json({ success: true });
-          });
-        }
-      });
-    });
-  },
-  delete: (req, res) => {
-    const dbPath = path.join(__dirname, "../../database/ex.json");
-    var {room: new_room, reservation_code: new_reservation_code,name: new_name,} = req.body.reserv_map;
-    var new_date = req.body.date;
-    var new_reserv = {room: new_room,reservation_code: new_reservation_code,name: new_name,};
 
     fs.readFile(dbPath, "utf8", (err, data) => {
       if (err) {
@@ -168,21 +151,23 @@ const process = {
         return res.status(500).json({ success: false, msg: "서버 오류" });
       }
       var reservations = JSON.parse(data); // db.json 파일을 파싱
-      reservations[date] = [{ room: 201, reservation_code: "", name: ""},
-                            { room: 202, reservation_code: "", name: ""},
-                            { room: 203, reservation_code: "", name: ""},
-                            { room: 204, reservation_code: "", name: ""},
-                            { room: 205, reservation_code: "", name: ""},
-                            { room: 301, reservation_code: "", name: ""},
-                            { room: 302, reservation_code: "", name: ""},
-                            { room: 303, reservation_code: "", name: ""},
-                            { room: 304, reservation_code: "", name: ""},
-                            { room: 305, reservation_code: "", name: ""},
-                            { room: 401, reservation_code: "", name: ""},
-                            { room: 402, reservation_code: "", name: ""},
-                            { room: 403, reservation_code: "", name: ""},
-                            { room: 404, reservation_code: "", name: ""},
-                            { room: 405, reservation_code: "", name: ""}];
+      reservations[date] = [
+        { room: 201, reservation_code: "", name: "" },
+        { room: 202, reservation_code: "", name: "" },
+        { room: 203, reservation_code: "", name: "" },
+        { room: 204, reservation_code: "", name: "" },
+        { room: 205, reservation_code: "", name: "" },
+        { room: 301, reservation_code: "", name: "" },
+        { room: 302, reservation_code: "", name: "" },
+        { room: 303, reservation_code: "", name: "" },
+        { room: 304, reservation_code: "", name: "" },
+        { room: 305, reservation_code: "", name: "" },
+        { room: 401, reservation_code: "", name: "" },
+        { room: 402, reservation_code: "", name: "" },
+        { room: 403, reservation_code: "", name: "" },
+        { room: 404, reservation_code: "", name: "" },
+        { room: 405, reservation_code: "", name: "" },
+      ];
       fs.writeFile(dbPath, JSON.stringify(reservations, null, 2), (err) => {
         if (err) {
           console.error(err);
@@ -192,7 +177,6 @@ const process = {
       });
     });
   },
-
 };
 
 module.exports = {

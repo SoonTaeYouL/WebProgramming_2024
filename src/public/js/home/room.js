@@ -56,10 +56,14 @@ function toggleFloor() {
 
 // 예약 추가
 async function add_reservations() {
+  const formData = new FormData();
+
   var roomNumber = parseInt(document.getElementById("roomNumber").value);
   var date = document.getElementById("content1").value;
   var guestName = document.getElementById("content2").value;
   var new_reservation_code = document.getElementById("content3").value;
+  const image = document.getElementById("fileUpload").files[0];
+
   console.log(guestName);
   if (guestName !== "") {
     var reserv_map = {
@@ -68,23 +72,42 @@ async function add_reservations() {
       name: guestName,
     };
   }
-  var req = {
-    reserv_map: reserv_map,
-    date: date,
-  };
-  fetch("/lists", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(req),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
-      closePopup();
-      window.location.reload(true);
+
+  formData.append("reserv_map", JSON.stringify(reserv_map));
+  formData.append("date", date);
+  formData.append("image", image);
+
+  try {
+    const response = await fetch("/lists", {
+      method: "POST",
+      body: formData,
     });
+
+    console.log(response);
+    // console.log("Success:", data);
+    // closePopup();
+    // window.location.reload(true);
+  } catch (err) {
+    console.log(err);
+  }
+
+  // var req = {
+  //   reserv_map: reserv_map,
+  //   date: date,
+  // };
+  // fetch("/lists", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify(req),
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log("Success:", data);
+  //     closePopup();
+  //     window.location.reload(true);
+  //   });
 }
 
 // 예약 업데이트
