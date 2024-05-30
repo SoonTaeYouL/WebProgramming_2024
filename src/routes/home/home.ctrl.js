@@ -99,10 +99,16 @@ const process = {
 
     const reservations = JSON.parse(fs.readFileSync(dbPath, "utf8"));
 
-    console.log(image, new_reservation, date);
-    console.log(reservations);
+    const newReservationDate = reservations[date].map((reservation) => {
+      if (reservation.room === new_reservation.room) {
+        reservation = { ...new_reservation, image };
+      }
+      return reservation;
+    });
 
-    res.json("good");
+    const updatedDB = { ...reservations, [date]: newReservationDate };
+    fs.writeFileSync(dbPath, JSON.stringify(updatedDB, null, 2), "utf8");
+    res.status(201).json(reservations);
   },
   delete: (req, res) => {
     const dbPath = path.join(__dirname, "../../database/ex.json");

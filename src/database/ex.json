@@ -7,8 +7,9 @@
     },
     {
       "room": 202,
-      "request": "",
-      "name": ""
+      "reservation_code": "밥 많이 주세요",
+      "name": "순태열",
+      "image": "/images/image-1717071840105.jpeg"
     },
     {
       "room": 203,
