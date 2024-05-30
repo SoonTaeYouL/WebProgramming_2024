@@ -21,12 +21,14 @@ async function setColors() {
           canReserve.classList.remove("cannot");
           canReserve.textContent = "예약가능";
           reservationName.textContent = "공실";
+          room_id.dataset.id = "can_reserve";
         }
       } else {
         bar.classList.add("cannot");
         canReserve.classList.add("cannot");
         canReserve.textContent = "예약불가";
         reservationName.textContent = index.name;
+        room_id.dataset.id = "cannot_reserve";
       }
     });
   } catch (error) {
@@ -68,12 +70,13 @@ function toggleFloor() {
 function filterRooms() {
   var isChecked = document.getElementById("myCheckbox").checked;
   rooms.forEach(function (room) {
+      const bar = room.querySelector(".bar");
       if (isChecked) {
-          if (room.style.backgroundColor !== "green") {
+          if (room.dataset.id !== "can_reserve") {
               room.style.display = "none";
           }
       } else {
-          room.style.display = "inline-block";
+          room.style.display = "flex";
       }
   });
 }
@@ -109,7 +112,6 @@ async function add_reservations() {
 
     console.log(response);
     closePopup();
-    window.location.reload(true);
   } catch (err) {
     console.log(err);
   }
@@ -143,6 +145,8 @@ async function update_reservations() {
   formData.append("date", date);
   formData.append("image", image);
 
+  console.log(formData)
+
   try {
     const response = await fetch("/lists", {
       method: "POST",
@@ -151,14 +155,15 @@ async function update_reservations() {
 
     console.log(response);
     closePopup();
-    window.location.reload(true);
   } catch (err) {
     console.log(err);
   }
 }
 
 // 예약 삭제
-function delete_reservations() {
+async function delete_reservations() {
+  const formData = new FormData();
+
   var roomNumber = parseInt(document.getElementById("roomNumber").value);
   var date = document.getElementById("content1").value;
   // var guestName = document.getElementById("content2").value;
@@ -173,19 +178,22 @@ function delete_reservations() {
     reserv_map: reserv_map,
     date: date,
   };
-  fetch("/lists", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(req),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
-      closePopup();
-      window.location.reload(true);
+
+  formData.append("reserv_map", JSON.stringify(reserv_map));
+  formData.append("date", date);
+
+
+  try {
+    const response = await fetch("/delete", {
+      method: "POST",
+      body: formData,
     });
+
+    console.log(response);
+    closePopup();
+  } catch (err) {
+    console.log(err);
+  }
 }
 // 팝업 창 열기
 function openPopup(roomNumber) {
@@ -243,7 +251,6 @@ function alldelete() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
-      window.location.reload(true);
     });
 }
 // 팝업 창 닫기

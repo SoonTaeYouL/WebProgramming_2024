@@ -115,7 +115,7 @@ const process = {
       room: new_room,
       reservation_code: new_reservation_code,
       name: new_name,
-    } = req.body.reserv_map;
+    } = JSON.parse(req.body.reserv_map);
     var new_date = req.body.date;
     var new_reserv = {
       room: new_room,

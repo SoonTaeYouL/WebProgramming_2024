@@ -310,79 +310,78 @@
   "2024-05-29": [
     {
       "room": 201,
-      "request": 1,
-      "name": "John Doe"
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 202,
-      "request": "",
+      "reservation_code": "",
       "name": ""
     },
     {
       "room": 203,
-      "request": 3,
-      "name": "Jane Jones"
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 204,
-      "reservation_code": "세상을 평정하는 순태열",
-      "name": "순태열",
-      "image": null
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 205,
-      "request": 5,
+      "reservation_code": "",
       "name": ""
     },
     {
       "room": 301,
-      "request": 6,
-      "name": "Tom Black"
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 302,
-      "request": 7,
-      "name": "Sue Green"
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 303,
-      "request": 8,
+      "reservation_code": "",
       "name": ""
     },
     {
       "room": 304,
-      "request": 9,
-      "name": "Jill Pink"
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 305,
-      "request": 10,
-      "name": "Fred Orange"
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 401,
-      "request": 11,
-      "name": "Alice Purple"
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 402,
-      "request": 12,
-      "name": "Wendy Yellow"
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 403,
-      "request": 13,
-      "name": "Sam Red"
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 404,
-      "request": 14,
-      "name": "Tim Brown"
+      "reservation_code": "",
+      "name": ""
     },
     {
       "room": 405,
-      "request": 15,
-      "name": "Pam White"
+      "reservation_code": "",
+      "name": ""
     }
   ],
   "2024-05-30": [

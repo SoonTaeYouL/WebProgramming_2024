@@ -44,6 +44,7 @@ router.post("/login", ctrl.process.login);
 router.post("/calendar", isAuthenticated, ctrl.process.manage);
 router.get("/lists", isAuthenticated, ctrl.process.read);
 router.post("/lists", upload.single("image"), ctrl.process.write);
+router.post("/delete", upload.single("image"), ctrl.process.delete);
 router.post("/alldel", ctrl.process.alldelete);
 
 // Image routes
