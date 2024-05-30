@@ -325,8 +325,9 @@
     },
     {
       "room": 204,
-      "request": "",
-      "name": ""
+      "reservation_code": "세상을 평정하는 순태열",
+      "name": "순태열",
+      "image": null
     },
     {
       "room": 205,

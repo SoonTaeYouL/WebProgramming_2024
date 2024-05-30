@@ -51,7 +51,7 @@ const process = {
   },
 
   manage: (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     var date = req.body.date;
     const dbPath = path.join(__dirname, "../../database/db.json");
     fs.readFile(dbPath, "utf8", (err, data) => {
@@ -60,11 +60,9 @@ const process = {
         return res.status(500).json({ success: false, msg: "서버 오류" });
       }
       var reservations = JSON.parse(data);
-      // console.log(reservations);
       var dateReservations = reservations[date];
-      console.log(dateReservations);
-      console.log(dateReservations);
-      if (dateReservations) {
+      let count = dateReservations.filter(reservation => reservation.name !== '').length;
+      if (count > 0) {
         res.json({
           success: true,
           reservations: dateReservations,
