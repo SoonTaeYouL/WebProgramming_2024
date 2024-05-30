@@ -84,30 +84,11 @@ async function add_reservations() {
     });
 
     console.log(response);
-    // console.log("Success:", data);
-    // closePopup();
-    // window.location.reload(true);
+    closePopup();
+    window.location.reload(true);
   } catch (err) {
     console.log(err);
   }
-
-  // var req = {
-  //   reserv_map: reserv_map,
-  //   date: date,
-  // };
-  // fetch("/lists", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(req),
-  // })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     console.log("Success:", data);
-  //     closePopup();
-  //     window.location.reload(true);
-  //   });
 }
 
 // 예약 업데이트
