@@ -53,7 +53,7 @@ const process = {
   manage: (req, res) => {
     console.log(req.body);
     var date = req.body.date;
-    const dbPath = path.join(__dirname, "../../database/ex.json");
+    const dbPath = path.join(__dirname, "../../database/db.json");
     fs.readFile(dbPath, "utf8", (err, data) => {
       if (err) {
         console.error(err);
@@ -62,6 +62,7 @@ const process = {
       var reservations = JSON.parse(data);
       // console.log(reservations);
       var dateReservations = reservations[date];
+      console.log(dateReservations);
       console.log(dateReservations);
       if (dateReservations) {
         res.json({
@@ -75,7 +76,7 @@ const process = {
   },
 
   read: (req, res) => {
-    const dbPath = path.join(__dirname, "../../database/ex.json");
+    const dbPath = path.join(__dirname, "../../database/db.json");
     fs.readFile(dbPath, "utf8", (err, data) => {
       if (err) {
         console.error(err);
@@ -91,7 +92,7 @@ const process = {
   // db.json 파일을 읽어와서 해당 날짜에 예약이 없으면 방과 name를 확인하고 예약을추가하고
   // 있으면 방과 name를 확인하고 예약을 수정하는 코드
   write: (req, res) => {
-    const dbPath = path.join(__dirname, "../../database/ex.json");
+    const dbPath = path.join(__dirname, "../../database/db.json");
 
     const image = req.file ? "/images/" + req.file.filename : null;
     const new_reservation = JSON.parse(req.body.reserv_map);
@@ -111,7 +112,7 @@ const process = {
     res.status(201).json(reservations);
   },
   delete: (req, res) => {
-    const dbPath = path.join(__dirname, "../../database/ex.json");
+    const dbPath = path.join(__dirname, "../../database/db.json");
     var {
       room: new_room,
       reservation_code: new_reservation_code,
@@ -148,7 +149,7 @@ const process = {
     });
   },
   alldelete: (req, res) => {
-    const dbPath = path.join(__dirname, "../../database/ex.json");
+    const dbPath = path.join(__dirname, "../../database/db.json");
     var date = req.body.date;
     fs.readFile(dbPath, "utf8", (err, data) => {
       if (err) {

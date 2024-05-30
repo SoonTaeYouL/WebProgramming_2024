@@ -65,6 +65,19 @@ function toggleFloor() {
   });
 }
 
+function filterRooms() {
+  var isChecked = document.getElementById("myCheckbox").checked;
+  rooms.forEach(function (room) {
+      if (isChecked) {
+          if (room.style.backgroundColor !== "green") {
+              room.style.display = "none";
+          }
+      } else {
+          room.style.display = "inline-block";
+      }
+  });
+}
+
 // 예약 추가
 async function add_reservations() {
   const formData = new FormData();
@@ -239,4 +252,5 @@ function closePopup() {
 window.onload = function () {
   setColors();
   toggleFloor(); // Set initial rooms on page load
+  document.getElementById("myCheckbox").addEventListener("change", filterRooms);
 };

@@ -11,12 +11,21 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(days);
     console.log(reservations);
 
-    const events = days.map((day, index) => {
-      return {
-        title: `예약 ${reservations[index].length}건`,
-        start: day,
-      };
-    });
+    const events = days
+      .map((day, index) => {
+        var result = reservations[index].filter(
+          (reservation) => reservation.name !== ""
+        );
+        // console.log(result);
+        if (result.length !== 0) {
+          return {
+            title: `예약 ${result.length}건`,
+            start: day,
+          };
+        }
+        return null; // 예약이 0건이면 null 반환
+      })
+      .filter((event) => event !== null); // null인 이벤트를 필터링하여 제거
 
     console.log(events);
 
