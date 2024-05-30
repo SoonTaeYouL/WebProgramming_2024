@@ -8,14 +8,25 @@ async function setColors() {
     const response = await fetch("/lists");
     const data = await response.json();
     const db_dates = data.reservations[date];
+    console.log(db_dates);
     db_dates.forEach(function (index) {
       let room_id = document.getElementById(index.room);
+      const bar = room_id.querySelector(".bar");
+      console.log(bar);
+      const reservationName = room_id.querySelector(".reservation_name");
+      const canReserve = room_id.querySelector(".can_reserve");
       if (index.name === "") {
         if (index.room) {
-          room_id.style.backgroundColor = "green";
+          bar.classList.remove("cannot");
+          canReserve.classList.remove("cannot");
+          canReserve.textContent = "예약가능";
+          reservationName.textContent = "공실";
         }
       } else {
-        room_id.style.backgroundColor = "red";
+        bar.classList.add("cannot");
+        canReserve.classList.add("cannot");
+        canReserve.textContent = "예약불가";
+        reservationName.textContent = index.name;
       }
     });
   } catch (error) {
@@ -47,7 +58,7 @@ function toggleFloor() {
   var floors = document.querySelectorAll(".floor");
   floors.forEach(function (floor) {
     if (selectedFloor === "floor_none" || floor.id === selectedFloor) {
-      floor.style.display = "block";
+      floor.style.display = "flex";
     } else {
       floor.style.display = "none";
     }

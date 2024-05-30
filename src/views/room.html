@@ -1,29 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>mainroom</title>
     <script src="/js/home/room.js" defer></script>
-    <!-- <script>
-        function alldelete() {
-            if (confirm("전체 데이터를 삭제하시겠습니까?")) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "/delete-all-data", true);
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        // 서버에서 응답을 받았을 때 처리할 내용
-                        alert("전체 데이터가 삭제되었습니다.");
-                    }
-                };
-                xhr.send();
-            }
-        }
-    </script> -->
     <style>
-        html, body {
+        html,
+        body {
             width: 100%;
             height: 100%;
-            position: relative; /* Add position relative to body for button positioning */
         }
+
         body {
             margin: 0;
             padding: 0;
@@ -32,12 +19,12 @@
             overflow: hidden;
             background-color: rgb(234, 234, 234);
         }
+
         .header_left {
             font-family: Verdana, sans-serif;
             font-size: 1em;
             display: flex;
             flex-direction: column;
-            position: relative;
             z-index: 1;
             background-color: #333;
             padding: 20px;
@@ -45,31 +32,75 @@
             height: 100%;
             color: white;
         }
+
         h4 {
             display: inline-block;
         }
+
         .room {
-            display: inline-block;
-            width: 150px;
-            height: 100px;
-            padding: 10px;
-            margin: 10px;
-            background-color: white;
-            border: 3px solid #000;
-            border-radius: 5px;
-            text-align: center;
-            line-height: 100px;
-            font-size: xx-large;
-            cursor: pointer; /* Add cursor pointer to indicate clickability */
-            box-shadow: 5px 5px 5px 5px gray;
+            display: flex;
+            flex-direction: column;
+            width: 220px;
+            height: 200px;
+            margin: 10px 0px 0px 10px;
+            cursor: pointer;
+            background-color: rgb(255, 255, 255) !important;
+            border-radius: 8px;
         }
+
+        .room .bar {
+            width: 100%;
+            height: 28px;
+            background-color: #4caf50;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .room .bar.cannot {
+            background-color: #f44336;
+        }
+
+        .room .room_info_wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 24px 0px;
+        }
+
+        .room .room_info_wrapper .room_number {
+            font-size: 28px;
+            font-weight: bolder;
+        }
+
+        .room .room_info_wrapper .reservation_name {
+            font-size: 20px;
+            color: #706c6c;
+        }
+
+        .room .room_info_wrapper .can_reserve {
+            color: #4caf50;
+        }
+
+        .room .room_info_wrapper .can_reserve.cannot {
+            color: #f44336;
+        }
+
         .floor {
-            display: none; /* Initially hide all floors */
+            display: none;
+            margin-left: 10px;
+            /* Initially hide all floors */
         }
+
         .floor_num {
             font-size: x-large;
-            padding-left: 30px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
         }
+
         .popup {
             width: 400px;
             background-color: white;
@@ -78,14 +109,18 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 1000; /* 팝업 창을 항상 가장 위로 표시 */
+            z-index: 1000;
+            /* 팝업 창을 항상 가장 위로 표시 */
             padding: 20px;
         }
-        .popup input[type="date"], .popup textarea {
+
+        .popup input[type="date"],
+        .popup textarea {
             width: calc(100% - 20px);
             margin-bottom: 10px;
             padding: 5px;
         }
+
         .popup button {
             padding: 5px 10px;
             background-color: #4caf50;
@@ -93,27 +128,50 @@
             border: none;
             cursor: pointer;
         }
-        .delete-button {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+
+        .floor_header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 20px;
+        }
+
+        .floor_header span {
+            font-family: Verdana, sans-serif;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .room205 {
+            position: relative;
+        }
+
+        #delete-button {
             padding: 10px 20px;
             background-color: #f44336;
             color: white;
             border: none;
             cursor: pointer;
             border-radius: 5px;
-            z-index: 2; /* Ensure the button appears above other elements */
+            font-size: 18px;
+            position: absolute;
+            top: -76px;
+            right: -1px;
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="header_left">
             <h2 class="logo_name">Hotel reservation system</h2>
             <div style="background-color: #706c6c; height: 200px; width: 100%;">
                 <input type="checkbox" id="myCheckbox" name="myCheckbox" />
-                <label for="myCheckbox"><h4 style="font-size: large">빈 방</h4></label><br />
+                <label for="myCheckbox">
+                    <h4 style="font-size: large">빈 방</h4>
+                </label><br />
                 <select name="score" id="select_room" onchange="toggleFloor()">
                     <option value="floor_none">전체보기</option>
                     <option value="floor_2">2층</option>
@@ -124,29 +182,139 @@
         </div>
     </header>
     <div style="overflow:auto" class="floor_num" id="floor_container">
+        <header class="floor_header">
+            <span>Check Room Reservation</span>
+        </header>
         <div class="floor" id="floor_2">
-            <h3>2층</h3>
-            <div class="room" id="201" onclick="openPopup('201')">201</div>
-            <div class="room" id="202" onclick="openPopup('202')">202</div>
-            <div class="room" id="203" onclick="openPopup('203')">203</div>
-            <div class="room" id="204" onclick="openPopup('204')">204</div>
-            <div class="room" id="205" onclick="openPopup('205')">205</div>
+            <!-- <h3>2층</h3> -->
+            <div class="room" id="201" onclick="openPopup('201')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">201호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="202" onclick="openPopup('202')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">202호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="203" onclick="openPopup('203')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">203호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="204" onclick="openPopup('204')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">204호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room room205" id="205" onclick="openPopup('205')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">205호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+                <!-- 일괄 삭제 버튼 -->
+                <button id="delete-button" onclick="alldelete()">예약 비우기</button>
+            </div>
         </div>
         <div class="floor" id="floor_3">
-            <h3>3층</h3>
-            <div class="room" id="301" onclick="openPopup('301')">301</div>
-            <div class="room" id="302" onclick="openPopup('302')">302</div>
-            <div class="room" id="303" onclick="openPopup('303')">303</div>
-            <div class="room" id="304" onclick="openPopup('304')">304</div>
-            <div class="room" id="305" onclick="openPopup('305')">305</div>
+            <!-- <h3>3층</h3> -->
+            <div class="room" id="301" onclick="openPopup('301')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">301호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="302" onclick="openPopup('302')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">302호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="303" onclick="openPopup('303')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">303호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="304" onclick="openPopup('304')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">304호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="305" onclick="openPopup('305')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">305호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
         </div>
         <div class="floor" id="floor_4">
-            <h3>4층</h3>
-            <div class="room" id="401" onclick="openPopup('401')">401</div>
-            <div class="room" id="402" onclick="openPopup('402')">402</div>
-            <div class="room" id="403" onclick="openPopup('403')">403</div>
-            <div class="room" id="404" onclick="openPopup('404')">404</div>
-            <div class="room" id="405" onclick="openPopup('405')">405</div>
+            <!-- <h3>4층</h3> -->
+            <div class="room" id="401" onclick="openPopup('401')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">401호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="402" onclick="openPopup('402')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">402호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="403" onclick="openPopup('403')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">403호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="404" onclick="openPopup('404')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">404호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
+            <div class="room" id="405" onclick="openPopup('405')">
+                <div class="bar"></div>
+                <div class="room_info_wrapper">
+                    <div class="room_number">405호</div>
+                    <div class="reservation_name"></div>
+                    <div class="can_reserve"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -178,17 +346,15 @@
         <textarea id="content2" name="content1" rows="1"></textarea><br />
         <label for="content3">요청사항</label>
         <textarea id="content3" name="content3" rows="4"></textarea><br />
-        <label for="fileUpload">필수서류</label><br/><br/>
+        <label for="fileUpload">필수서류</label><br /><br />
         <input type="file" id="fileUpload" name="fileUpload"><br />
         <textarea id="fileupload" name="fileupload" rows="1"></textarea>
         <button id="addormod"></button>
         <button id="deletebutton" style="display: block;"></button>
-        <button onclick="closePopup()">취소</button><br/>
+        <button onclick="closePopup()">취소</button><br />
 
     </div>
 
-    <!-- 일괄 삭제 버튼 -->
-    <button id="delete-button" onclick="alldelete()">일괄 삭제</button>
-    
 </body>
+
 </html>
